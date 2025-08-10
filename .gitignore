@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+**/node_modules
 /.pnp
 .pnp.*
 .yarn/*
@@ -12,6 +13,7 @@
 
 # testing
 /coverage
+.jest/ 
 
 # next.js
 /.next/
@@ -31,7 +33,12 @@ yarn-error.log*
 .pnpm-debug.log*
 
 # env files (can opt-in for committing if needed)
-.env*
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.example
 
 # vercel
 .vercel
@@ -39,3 +46,104 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Backend build artifacts and logs
+backend/dist/
+backend/logs/
+backend/*.log
+backend/build/
+backend/coverage/
+
+# Database files
+postgres/
+*.db
+*.sqlite
+*.sqlite3
+
+# SSL certificates
+ssl/
+*.crt
+*.key
+*.pem
+
+# Log files (general)
+*.log
+logs/
+
+# Remove redundant lock files (keep only pnpm-lock.yaml)
+backend/package-lock.json
+package-lock.json
+yarn.lock
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.sublime-*
+
+# OS generated files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+.temp/
+.tmp/
+
+# Docker
+.dockerignore
+docker-compose.override.yml
+
+# Testing and coverage
+.nyc_output/
+coverage/
+*.lcov
+.jest/
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Microbundle cache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
+# Optional REPL history
+.node_repl_history
+
+# Output of 'npm pack'
+*.tgz
+
+# Yarn Integrity file
+.yarn-integrity
+
+# parcel-bundler cache (https://parceljs.org/)
+.parcel-cache
+
+# Storybook build outputs
+.out
+.storybook-out
+
+# Temporary folders
+tmp/
+temp/
