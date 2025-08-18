@@ -1,0 +1,24 @@
+# Database Configuration (PostgreSQL)
+DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=dawn
+DB_USER=postgres
+DB_PASSWORD=your_password_here
+
+# JWT Configuration
+JWT_SECRET=your_jwt_secret_key_here
+
+# Blockchain RPC URLs
+ETHEREUM_RPC_URL=https://eth-mainnet.alchemyapi.io/v2/your_api_key
+POLYGON_RPC_URL=https://polygon-mainnet.g.alchemy.com/v2/your_api_key
+
+# Application Configuration
+NODE_ENV=development
+APP_VERSION=1.0.0
+ALLOWED_ORIGINS=http://localhost:3000,http://localhost:3001
+
+# Redis Configuration (if using Redis)
+REDIS_URL=redis://localhost:6379
+
+# Server Configuration
+PORT=5000
