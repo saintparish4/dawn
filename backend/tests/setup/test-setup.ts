@@ -1,49 +1,25 @@
-import { config } from 'dotenv';
 import { beforeAll, afterAll, beforeEach } from "@jest/globals";
 import { Pool } from "pg";
 
-// Load environment variables from .env file
-config({ path: '.env' });
-
-// Debug: Log environment variables
-console.log("=== ENVIRONMENT VARIABLES DEBUG ===");
-console.log("DB_HOST:", process.env.DB_HOST);
-console.log("DB_PORT:", process.env.DB_PORT);
-console.log("DB_NAME:", process.env.DB_NAME);
-console.log("DB_USER:", process.env.DB_USER);
-console.log("DB_PASSWORD:", process.env.DB_PASSWORD ? "[SET]" : "[NOT SET]");
-console.log("NODE_ENV:", process.env.NODE_ENV);
-console.log("==================================");
 
 // Test database configuration
 export const testDb = new Pool({
-  host: process.env.DB_HOST,
-  port: parseInt(process.env.DB_PORT || "5432"),
-  database: process.env.DB_NAME,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD || "postgres",
-  max: 5,
+  host: process.env.TEST_DB_HOST || 'localhost', // <- Environment variable ready
+  port: parseInt(process.env.TEST_DB_PORT || '5433'), // <- Configurable port for testing
+  database: process.env.TEST_DB_NAME || 'dawn_test',
+  user: process.env.TEST_DB_USER || 'test',
+  password: process.env.TEST_DB_PASSWORD || 'test', 
 });
 
-// Debug: Log database connection config
-console.log("=== DATABASE CONNECTION CONFIG ===");
-console.log("Connection config:", {
-  host: process.env.DB_HOST,
-  port: parseInt(process.env.DB_PORT || "5432"),
-  database: process.env.DB_NAME,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD ? "[SET]" : "[NOT SET]",
-  max: 5
-});
-console.log("==================================");
+
 
 // Global test setup
 beforeAll(async () => {
   // Set test environment
   Object.defineProperty(process.env, 'NODE_ENV', { value: 'test', writable: true });
-  // process.env.JWT_SECRET = "test-jwt-secret-key-for-testing-only";
-  // process.env.ETHEREUM_RPC_URL = "https://eth-mainnet.alchemyapi.io/v2/test";
-  // process.env.POLYGON_RPC_URL = "https://polygon-mainnet.g.alchemy.com/v2/test";
+  process.env.JWT_SECRET = "test-jwt-secret-key-for-testing-only";
+  process.env.ETHEREUM_RPC_URL = "https://eth-mainnet.alchemyapi.io/v2/test";
+  process.env.POLYGON_RPC_URL = "https://polygon-mainnet.g.alchemy.com/v2/test";
 
   // Initialize test database schema
   await initializeTestDatabase();
